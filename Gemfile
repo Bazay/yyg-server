@@ -21,7 +21,7 @@ end
 #Interface
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.0.0'
-gem 'bootstrap-sass', '~> 2.3.1.0'
+gem 'bootstrap-sass', '~> 3.3.1'
 gem 'select2-rails'
 gem 'simple_form'
 
