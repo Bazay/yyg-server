@@ -19,9 +19,10 @@ group :assets do
 end
 
 #Interface
-gem 'jquery-rails'
+gem 'jquery-rails', '2.2.1'
 gem 'jquery-ui-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
 gem 'select2-rails'
 gem 'simple_form'
 
