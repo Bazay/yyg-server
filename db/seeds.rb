@@ -7,14 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Products
+##
 game_maker = Product::PRODUCT_TYPE_GAME_MAKER
 gm_studio = Product.create( base_price: 0, name: "Standard", product_type: game_maker )
 gm_professional = Product.create( base_price: 49.99, name: "Professional", product_type: game_maker )
 gm_master = Product.create( base_price: 799.99, name: "Master", product_type: game_maker )
 
 #Sub-Products
+##Types
 export = SubProduct::PRODUCT_TYPE_EXPORT
 compiler = SubProduct::SUB_PRODUCT_TYPE_COMPILER
+#Sub Products
 wd = SubProduct.create( base_price: 0, name: "Windows Desktop Export", product_type: export)
 wa = SubProduct.create( base_price: 0, name: "Windows App Export", product_type: export)
 mac_os = SubProduct.create( base_price: 99.99, name: "Mac OS X Export", product_type: export)
@@ -35,10 +38,15 @@ gm_studio.sub_products << [ wd ]
 gm_professional.sub_products << [ wd, wa ]
 gm_professional.sub_products << [ wd, wa, mac_os, ubuntu, html5, android, ios, wp8, tizen, yyc, xbox_one, ps4, ps3, psv ]
 
-#Users/Accounts
+#Accounts
 standard_user = Account.create(email: "standard@user.com", registered_to: "Standard User")
 professional_base_user = Account.create(email: "professional_base@user.com", registered_to: "Professional Base User")
 professional_extended_user = Account.create(email: "professional_extended@user.com", registered_to: "Professional Extended User")
 
 #Connect Accounts to Products through Licences
-standard_user.licences.build(product: gm_studio, licence_type: Licence::LICENCE_TYPE_SUB)
+standard_licence = Licence.create(product: gm_studio, account: standard_user)
+standard_licence.set_to_active
+professional_base_licence = Licence.create(product: gm_professional, account: professional_base_user)
+professional_base_licence.set_to_active
+professional_extended_licence = Licence.create(product: professional_extended_user, account: professional_extended_user)
+professional_extended_licence.set_to_active

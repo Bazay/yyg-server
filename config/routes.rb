@@ -2,6 +2,15 @@ YygServer::Application.routes.draw do
 
   root to: 'home#index'
 
+  resources :products, only: [:index]
+  resources :sub_products, only: [:index]
+
+  namespace :admin do
+    root to: 'dashboard#index'
+
+
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

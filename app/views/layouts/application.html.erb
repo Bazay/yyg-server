@@ -4,6 +4,11 @@
   <meta name="description" content="YoYo Games Web Development Test">
   <meta name="author" content="Baron Bloomer">
   <title><%= content_for?(:title) ? "YoYo Games | #{yield(:title).try(:humanize).try(:titleize)}" : "YoYo Games Server" %></title>
+  <link href="http://yoyogames.com/assets/application-c3da36319389b0f489cb3bf7d7403bca.css" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="http://yoyogames.com/assets/print.css" media="print" />
+  <link href="http://yoyogames.com/assets/font-awesome-3.2.0/css/font-awesome-f8000718b71559e9cb95a5824971a272.css" media="all" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -14,11 +19,13 @@
   <%= render 'layouts/header' %>
 
   <div id="main" role="main" class="<%= controller_name %>_<%= action_name %>">
+    <div class="blocker">&nbsp;</div>
 
     <!-- Flash Messages -->
     <%= render 'layouts/messages' %>
 
-    <div class="container">
+    <!-- familiar? -->
+    <div class="container body-container">
       <%= yield %>
     </div><!-- /.container -->
   </div><!-- /#main -->
