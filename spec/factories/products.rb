@@ -2,8 +2,10 @@
 
 FactoryGirl.define do
   factory :product do
-    name "MyString"
-    product_type "MyString"
-    base_price 1.5
+
+    name { Faker::Commerce.product_name }
+    product_type Product::PRODUCT_TYPE_GAME_MAKER
+    base_price { Faker::Commerce.price }
+
   end
 end

@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   #RELATIONS
   has_many :licences
   has_many :accounts, :through => :licences
-  has_many :sub_products
+  has_and_belongs_to_many :sub_products
 
   #VALIDATIONS
   validates_uniqueness_of :name

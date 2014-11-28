@@ -1,7 +1,7 @@
 class SubProduct < ActiveRecord::Base
   include SoftDelete
 
-  attr_accessible :base_price, :name, :sub_product_type
+  attr_accessible :base_price, :name, :sub_product_type, :account
 
   #CONSTANTS
   SUB_PRODUCT_TYPE_EXPORT = "export"
@@ -12,7 +12,7 @@ class SubProduct < ActiveRecord::Base
   ]
 
   #RELATIONS
-  has_many :products
+  has_and_belongs_to_many :products
   has_many :accounts, :through => :licences
 
   #VALIDATIONS

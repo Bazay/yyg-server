@@ -1,4 +1,6 @@
-class LicencesController < AdminBaseController
-  def index
+module Admin
+  class LicencesController < AdminBaseController
+    def index
+    end
   end
 end

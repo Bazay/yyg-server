@@ -9,6 +9,5 @@ class CreateSubProducts < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :sub_products, :product_id_id
   end
 end

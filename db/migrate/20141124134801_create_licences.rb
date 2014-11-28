@@ -11,9 +11,12 @@ class CreateLicences < ActiveRecord::Migration
       t.datetime :revoked_at
       t.string :licence_state
       t.string :licence_type
+      t.boolean :deleted, default: false
+      t.datetime :deleted_at
 
       t.timestamps
     end
+    
     add_index :licences, :account_id
     add_index :licences, :product_id
     add_index :licences, :sub_product_id

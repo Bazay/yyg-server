@@ -29,7 +29,7 @@ gem 'simple_form'
 #Testing
 gem 'factory_girl_rails', '~> 4.2.1'
 gem 'forgery', '0.5.0'
-gem 'ffaker'
+gem 'faker'
 gem 'watir-webdriver', "~>0.6.9"
 gem 'headless'
 gem 'capybara'
@@ -42,6 +42,7 @@ group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'guard-rspec'
 end
 group :test do
   gem 'shoulda-matchers'
