@@ -5,7 +5,7 @@ describe Account do
     setup
   end
 
-  context "GENERIC - " do
+  context "GENERIC -" do
     it 'soft deletes the record' do
       account_id = @account.id
       @account.destroy
@@ -13,7 +13,7 @@ describe Account do
     end
   end
 
-  context "VALIDATIONS - " do
+  context "VALIDATIONS -" do
     it 'validates_uniqueness_of email' do
       expect{create(:account, email: @account.email)}.to raise_error
     end
@@ -22,11 +22,10 @@ describe Account do
       expect{create(:account, email: "")}.to raise_error
       #Invalid syntax
       expect{create(:account, email: "hello")}.to raise_error
-
     end
   end
 
-  context "HOOKS - " do
+  context "HOOKS -" do
     it 'account is assigned a unique parent licence on creation' do
       new_account = create(:account)
       expect(new_account.parent_licence.present?).to eql(true)
