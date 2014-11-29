@@ -36,12 +36,13 @@ ps3 = SubProduct.create( base_price: 299.99, name: "PlayStation 3 Export", produ
 #Product Relations
 gm_studio.sub_products << [ wd ]
 gm_professional.sub_products << [ wd, wa ]
-gm_professional.sub_products << [ wd, wa, mac_os, ubuntu, html5, android, ios, wp8, tizen, yyc, xbox_one, ps4, ps3, psv ]
+gm_master.sub_products << [ wd, wa, mac_os, ubuntu, html5, android, ios, wp8, tizen, yyc, xbox_one, ps4, ps3, psv ]
 
 #Accounts
 standard_user = Account.create(email: "standard@user.com", registered_to: "Standard User")
 professional_base_user = Account.create(email: "professional_base@user.com", registered_to: "Professional Base User")
 professional_extended_user = Account.create(email: "professional_extended@user.com", registered_to: "Professional Extended User")
+master_user = Account.create(email: "master@user.com", registered_to: "Master User")
 
 #Connect Accounts to Products/Sub Products through SubLicences
 standard_licence = SubLicence.create(product: gm_studio, account: standard_user)
@@ -50,3 +51,4 @@ professional_base_licence = SubLicence.create(product: gm_professional, account:
 professional_base_licence.set_to_active
 professional_extended_licence = SubLicence.create(product: professional_extended_user, account: professional_extended_user)
 professional_extended_licence.set_to_active
+master_licence = SubLicence.create(product: gm_master, account: master_user)

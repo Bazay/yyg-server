@@ -3,6 +3,9 @@ class Account < ActiveRecord::Base
 
   attr_accessible :email, :registered_to, :deleted, :deleted_at
 
+  #CONSTANTS
+  VALID_EMAIL_REGEX = /^[^@\s"']+@([^@\.\s"']+\.)+[^@\.\s"']+$/
+
   #RELATIONS
   has_many :licences, :dependent => :destroy
   has_many :sub_licences, :dependent => :destroy
@@ -12,6 +15,7 @@ class Account < ActiveRecord::Base
 
   #VALIDATIONS
   validates_uniqueness_of :email
+  validates_format_of :email, with: VALID_EMAIL_REGEX
   validates_presence_of :email
 
   #HOOKS

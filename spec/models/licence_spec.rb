@@ -71,13 +71,13 @@ describe Licence do
     it 'product_licences scope works as expected' do
       product_licence = create(:sub_licence, account: @account, product: @product)
       sub_product_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      product_licences = SubLicence.unscoped.where('product_id IS NOT NULL AND sub_product_id IS NULL').pluck(:id).sort
+      product_licences = SubLicence.unscoped.where(deleted: false).where('product_id IS NOT NULL AND sub_product_id IS NULL').pluck(:id).sort
       expect(SubLicence.product_licences.pluck(:id).sort).to eql(product_licences)
     end
     it 'sub_product_licences scope works as expected' do
       product_licence = create(:sub_licence, account: @account, product: @product)
       sub_product_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      sub_product_licences = SubLicence.unscoped.where('product_id IS NOT NULL AND sub_product_id IS NOT NULL').pluck(:id).sort
+      sub_product_licences = SubLicence.unscoped.where(deleted: false).where('product_id IS NOT NULL AND sub_product_id IS NOT NULL').pluck(:id).sort
       expect(SubLicence.sub_product_licences.pluck(:id).sort).to eql(sub_product_licences)
     end
   end
