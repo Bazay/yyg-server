@@ -24,7 +24,7 @@ describe Licence do
     end
   end
 
-  context "VALIDATIONS - " do
+  context "VALIDATIONS -" do
     it 'validates_uniqueness_of key' do
       sub_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
       sub_licence.key = @parent_licence.key
@@ -35,12 +35,6 @@ describe Licence do
       sub_licence.key = nil
       sub_licence.save
       expect(sub_licence.errors.full_messages.join(' ').downcase.include?('key')).to eql(true)
-    end
-    it 'requires an included licence_type' do
-      sub_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      sub_licence.licence_type = nil
-      sub_licence.save
-      expect(sub_licence.errors.full_messages.join(' ').downcase.include?('licence type')).to eql(true)
     end
     it 'requires an included licence_state' do
       sub_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
@@ -74,27 +68,17 @@ describe Licence do
       not_deleted_licences = Licence.unscoped.where(deleted: false).pluck(:id).sort
       expect(Licence.pluck(:id).sort).to eql(not_deleted_licences)
     end
-    it 'parent_licences scope works as expected' do
-      sub_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      parent_licences = Licence.unscoped.where(licence_type: Licence::LICENCE_TYPE_PARENT).pluck(:id).sort
-      expect(Licence.parent_licences.pluck(:id).sort).to eql(parent_licences)
-    end
-    it 'sub_licences scope works as expected' do
-      sub_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      sub_licences = Licence.unscoped.where(licence_type: Licence::LICENCE_TYPE_SUB).pluck(:id).sort
-      expect(Licence.sub_licences.pluck(:id).sort).to eql(sub_licences)
-    end
     it 'product_licences scope works as expected' do
       product_licence = create(:sub_licence, account: @account, product: @product)
       sub_product_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      product_licences = Licence.unscoped.where('licence_type = ? AND product_id IS NOT NULL AND sub_product_id IS NULL', Licence::LICENCE_TYPE_SUB).pluck(:id).sort
-      expect(Licence.product_licences.pluck(:id).sort).to eql(product_licences)
+      product_licences = SubLicence.unscoped.where('product_id IS NOT NULL AND sub_product_id IS NULL').pluck(:id).sort
+      expect(SubLicence.product_licences.pluck(:id).sort).to eql(product_licences)
     end
     it 'sub_product_licences scope works as expected' do
       product_licence = create(:sub_licence, account: @account, product: @product)
       sub_product_licence = create(:sub_licence, sub_product: @sub_product, account: @account, product: @product)
-      sub_product_licences = Licence.unscoped.where('licence_type = ? AND product_id IS NOT NULL AND sub_product_id IS NOT NULL', Licence::LICENCE_TYPE_SUB).pluck(:id).sort
-      expect(Licence.sub_product_licences.pluck(:id).sort).to eql(sub_product_licences)
+      sub_product_licences = SubLicence.unscoped.where('product_id IS NOT NULL AND sub_product_id IS NOT NULL').pluck(:id).sort
+      expect(SubLicence.sub_product_licences.pluck(:id).sort).to eql(sub_product_licences)
     end
   end
 
@@ -131,7 +115,7 @@ describe Licence do
 
       new_product_licence = create(:sub_licence, product: new_product, account: new_account)
 
-      expect(new_account.licences.sub_product_licences.select{|sp_licence| sp_licence.account == new_product_licence.account && 
+      expect(new_account.sub_product_licences.select{|sp_licence| sp_licence.account == new_product_licence.account && 
         sp_licence.product == new_product && sp_licence.licence_state == new_product_licence.licence_state && 
         sp_licence.expires_at == new_product_licence.expires_at}.map(&:sub_product_id).sort).to eql(new_product.sub_products.pluck(:id).sort)
     end
@@ -147,7 +131,7 @@ describe Licence do
 
       new_product_licence = create(:sub_licence, product: new_product, account: @account)
 
-      expect(@account.licences.sub_product_licences.select{|sp_licence| sp_licence.account == new_product_licence.account && 
+      expect(@account.sub_product_licences.select{|sp_licence| sp_licence.account == new_product_licence.account && 
         (sp_licence.product == new_product || sp_licence.product == @product) && 
         (sp_licence.licence_state == new_product_licence.licence_state || sp_licence.licence_state == product_licence.licence_state) && 
         (sp_licence.expires_at == new_product_licence.expires_at || sp_licence.expires_at == product_licence.expires_at)}.map(&:sub_product_id).sort).to eql(sub_products.map(&:id).sort)

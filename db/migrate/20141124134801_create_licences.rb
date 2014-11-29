@@ -10,7 +10,7 @@ class CreateLicences < ActiveRecord::Migration
       t.datetime :activated_at
       t.datetime :revoked_at
       t.string :licence_state
-      t.string :licence_type
+      t.string :type
       t.boolean :deleted, default: false
       t.datetime :deleted_at
 

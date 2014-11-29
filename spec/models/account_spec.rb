@@ -22,5 +22,10 @@ describe Account do
   end
 
   def setup
+    @account = create(:account)
+    @product = create(:product)
+    @sub_product = create(:sub_product)
+    @product.sub_products.push(@sub_product)
+    @parent_licence = @account.parent_licence
   end
 end

@@ -2,7 +2,7 @@ class Licence < ActiveRecord::Base
   include SoftDelete
 
   attr_accessible :account_id, :account, :sub_product_id, :sub_product, :product_id, :product, :expired_at, :expires_at, :key, 
-    :licence_state, :licence_type, :activated_at, :revoked_at, :deleted, :deleted_at
+    :licence_state, :type, :activated_at, :revoked_at, :deleted, :deleted_at
 
   #CONSTANTS
   #Licence States
@@ -18,8 +18,8 @@ class Licence < ActiveRecord::Base
   ]
 
   #Licence Types
-  LICENCE_TYPE_PARENT = "parent_licence"
-  LICENCE_TYPE_SUB = "sub_licence"
+  LICENCE_TYPE_PARENT = "ParentLicence"
+  LICENCE_TYPE_SUB = "SubLicence"
   LICENCE_TYPES = [
     LICENCE_TYPE_PARENT,
     LICENCE_TYPE_SUB
@@ -43,18 +43,14 @@ class Licence < ActiveRecord::Base
 
   #RELATIONS
   belongs_to :account
-  belongs_to :product
-  belongs_to :sub_product
 
   #HOOKS
   before_validation :generate_uniq_key, :set_default_licence_state
 
   #VALIDATIONS
-  validates_presence_of :key, :licence_state, :licence_type, :account_id
+  validates_presence_of :key, :licence_state, :type, :account_id
   validates_uniqueness_of :key
   validates_inclusion_of :licence_state, :in => LICENCE_STATES
-  validates_inclusion_of :licence_type, :in => LICENCE_TYPES
-  validate :has_valid_relations
 
   #SCOPES
   #Licence States
@@ -62,12 +58,6 @@ class Licence < ActiveRecord::Base
   scope :inactive, -> { where('licences.licence_state = ?', LICENCE_STATE_INACTIVE) }
   scope :expired, -> { where('licences.licence_state = ?', LICENCE_STATE_EXPIRED) }
   scope :revoked, -> { where('licences.licence_state = ?', LICENCE_STATE_REVOKED) }
-  #Account Related Scopes
-  scope :parent_licences, -> { where('licences.licence_type = ?', LICENCE_TYPE_PARENT) }
-  #Product Related Scopes
-  scope :sub_licences, -> { where('licences.licence_type = ?', LICENCE_TYPE_SUB) }
-  scope :product_licences, -> { sub_licences.where('licences.product_id IS NOT NULL AND licences.sub_product_id IS NULL') }
-  scope :sub_product_licences, -> { sub_licences.where('licences.sub_product_id IS NOT NULL') }
   
   ###---------- CLASS METHODS ---------###
 
@@ -138,19 +128,6 @@ class Licence < ActiveRecord::Base
 
   def key_exists?(uuid)
     Licence.find_by_key(uuid).present?
-  end
-
-  def has_valid_relations
-    #All sub_licences must be connected to either a product or a sub_product
-    if licence_type == LICENCE_TYPE_SUB
-      if self.product_id.nil? && self.sub_product_id.nil?
-        errors.add(:base, "Licence Type 'Sub' be assigned to either a Product or Sub Product")
-      elsif self.product_id.nil?
-        errors.add(:base, "Licence Type 'Sub' be assigned to a product")        
-      end
-    elsif licence_type == LICENCE_TYPE_PARENT
-      errors.add(:base, "Licence Type 'Parent' cannot be assigned to any Products or Sub Products") unless self.product_id.nil? && self.sub_product_id.nil?
-    end
   end
 
 end

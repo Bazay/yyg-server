@@ -43,10 +43,10 @@ standard_user = Account.create(email: "standard@user.com", registered_to: "Stand
 professional_base_user = Account.create(email: "professional_base@user.com", registered_to: "Professional Base User")
 professional_extended_user = Account.create(email: "professional_extended@user.com", registered_to: "Professional Extended User")
 
-#Connect Accounts to Products through Licences
-standard_licence = Licence.create(product: gm_studio, account: standard_user)
+#Connect Accounts to Products/Sub Products through SubLicences
+standard_licence = SubLicence.create(product: gm_studio, account: standard_user)
 standard_licence.set_to_active
-professional_base_licence = Licence.create(product: gm_professional, account: professional_base_user)
+professional_base_licence = SubLicence.create(product: gm_professional, account: professional_base_user)
 professional_base_licence.set_to_active
-professional_extended_licence = Licence.create(product: professional_extended_user, account: professional_extended_user)
+professional_extended_licence = SubLicence.create(product: professional_extended_user, account: professional_extended_user)
 professional_extended_licence.set_to_active

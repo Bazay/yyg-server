@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails yyg-server: development" uuid="847c8bf4-7d73-4a63-acfb-b1b866312d1e">
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="Rails yyg-server: test" uuid="69472f55-79cc-46cd-a1b5-fb8c67b6167c">
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>

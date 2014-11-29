@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :licence do
+  factory :sub_licence do
     account nil
     key nil
     expires_at nil
@@ -9,15 +9,15 @@ FactoryGirl.define do
     sub_product nil
     product nil
 
-    factory :active_licence do
+    factory :active_sub_licence do
       licence_state Licence::LICENCE_STATE_ACTIVE
     end
 
-    factory :expired_licence do
+    factory :expired_sub_licence do
       licence_state Licence::LICENCE_STATE_EXPIRED
     end
 
-    factory :revoked_licence do
+    factory :revoked_sub_licence do
       licence_state Licence::LICENCE_STATE_REVOKED
     end
   end

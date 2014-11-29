@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20141128142911) do
     t.datetime "activated_at"
     t.datetime "revoked_at"
     t.string   "licence_state"
-    t.string   "licence_type"
+    t.string   "type"
     t.boolean  "deleted",        :default => false
     t.datetime "deleted_at"
     t.datetime "created_at",                        :null => false
