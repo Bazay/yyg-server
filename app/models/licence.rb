@@ -54,6 +54,8 @@ class Licence < ActiveRecord::Base
 
   #SCOPES
   #Licence States
+  ##NB* Default scope will exclude revoked licences however this can be changed if not intended...
+  default_scope where('licences.licence_state != ?', LICENCE_STATE_REVOKED) 
   scope :active, -> { where('licences.licence_state = ?', LICENCE_STATE_ACTIVE) } 
   scope :inactive, -> { where('licences.licence_state = ?', LICENCE_STATE_INACTIVE) }
   scope :expired, -> { where('licences.licence_state = ?', LICENCE_STATE_EXPIRED) }

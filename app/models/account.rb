@@ -23,20 +23,29 @@ class Account < ActiveRecord::Base
 
   #SCOPES
   ###---------- CLASS METHODS ---------###
+  def self.find_by_parent_key(key)
+    #NB* Consider storing parent_licence.key in the account model to reduce database lookups...
+    includes(:parent_licence).where('licences.key = ?',key).first
+  end
 
   ###---------- INSTANCE METHODS ---------###
   def get_account_state
     parent_licence.licence_state
   end
+  def products
+    @products = Product.includes(:licences).where('licences.type = ? AND licences.account_id = ? AND licences.product_id IS NOT NULL AND licences.sub_product_id IS NULL',Licence::LICENCE_TYPE_SUB,self.id)
+  end
 
-  #To avoid calling
+  #Shortened calls
   def product_licences
     sub_licences.product_licences
   end
   def sub_product_licences
     sub_licences.sub_product_licences
   end
-
+  def products_and_sub_products
+    products.includes(:sub_products)
+  end
 
   #NB* Rails 3 doesn't fully support associations with Classes that inherit, so unfortunately
   # we cannot use parent_licence.build :(
