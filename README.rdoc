@@ -10,7 +10,8 @@
   </p>
   <ol>
     <li>Run <b><em>bundle install</em></b> to install the required gems.</li>
-    <li>Run <b><em>rake db:migrate</em></b> to set up tables.</li>
+    <li>Run <b><em>rake db:migrate</em></b> to set up development environment tables.</li>
+    <li>Run <b><em>rake db:test:prepare</em></b> to set up test environment tables.</li>
     <li>Run <b><em>rake db:seed</em></b> to set up dummy data.</li>
     <li>Run <b><em>rails server</em></b> to start up a rails server.</li>
     <li>Open your preferred browser then navigate to http://localhost:3000 for further instruction.</li>

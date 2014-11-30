@@ -34,9 +34,13 @@ def setup
 
   #Accounts
   @standard_user = Account.create(email: "standard@user.com", registered_to: "Standard User")
+  @standard_user.parent_licence.set_to_active
   @professional_base_user = Account.create(email: "professional_base@user.com", registered_to: "Professional Base User")
+  @professional_base_user.parent_licence.set_to_active
   @professional_extended_user = Account.create(email: "professional_extended@user.com", registered_to: "Professional Extended User")
+  @professional_extended_user.parent_licence.set_to_active
   @master_user = Account.create(email: "master@user.com", registered_to: "Master User")
+  @master_user.parent_licence.set_to_active
 
   #Connect Accounts to Products/Sub Products through SubLicences
   @standard_licence = SubLicence.create(product: @gm_studio, account: @standard_user, licence_state: Licence::LICENCE_STATE_ACTIVE)

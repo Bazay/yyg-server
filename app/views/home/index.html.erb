@@ -4,9 +4,10 @@
     Run the following commands in the console (in listed order) from the project root folder:
   </p>
   <ol>
-    <li>Run <em>`bundle install`</em> to install required gems.</li>
-    <li>Run <em>`rake db:migrate`</em> to set up tables.</li>
-    <li>Run <em>`rake db:seed`</em> to set up dummy data.</li>
+    <li>Run <b><em>bundle install</em></b> to install required gems.</li>
+    <li>Run <b><em>rake db:migrate</em></b> to set up development environment tables.</li>
+    <li>Run <b><em>rake db:test:prepare</em></b> to set up test environment tables.</li>
+    <li>Run <b><em>rake db:seed</em></b> to set up dummy data.</li>
     <li>Refresh this page.</li>
   </ol>
 <% else %>
@@ -18,7 +19,7 @@
     The API capabilities are not demonstrated in views. In fact, everything is demonstrated in spec.<br>
     I've written tests which hopefully provide insight into the application. Please run rspec from the project root folder with the following command:<br>
     <br>
-    <b><em>`rspec spec/`</em></b><br>
+    <b><em>rspec spec/</em></b><br>
     <br>
     I've provided some explanation of the models and controllers in this app in the <a href="/overview">overview</a> tab in the navbar, so be sure to check that out.<br>
     <br>
