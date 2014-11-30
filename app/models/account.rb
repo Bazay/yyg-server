@@ -23,6 +23,9 @@ class Account < ActiveRecord::Base
 
   #SCOPES
   ###---------- CLASS METHODS ---------###
+  def self.find_by_parent_key(key)
+    includes(:parent_licence).where('licences.key = ?',key)
+  end
 
   ###---------- INSTANCE METHODS ---------###
   def get_account_state
