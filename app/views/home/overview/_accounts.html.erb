@@ -1,0 +1,33 @@
+<p>An Account stores a users information, ie their licences, products and sub products (exports). Each account has one and only one parent licence. </p>
+<hr>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Registered To</th>
+      <th>Deleted</th>
+      <th>Deleted At</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>State*</th>
+      <th>Key*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% accounts.each do |account| %>
+      <tr>
+        <td><%= account.id %></td>
+        <td><%= account.email %></td>
+        <td><%= account.registered_to %></td>
+        <td><%= account.deleted %></td>
+        <td><%= account.deleted_at %></td>
+        <td><%= account.created_at.strftime("%H:%M %d/%m/%Y") %></td>
+        <td><%= account.updated_at.strftime("%H:%M %d/%m/%Y") %></td>
+        <td><%= account.get_account_state %></td>
+        <td><%= account.key %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>*Derived from parent licence</p>

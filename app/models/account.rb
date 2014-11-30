@@ -35,6 +35,9 @@ class Account < ActiveRecord::Base
   def products
     @products = Product.includes(:licences).where('licences.type = ? AND licences.account_id = ? AND licences.product_id IS NOT NULL AND licences.sub_product_id IS NULL',Licence::LICENCE_TYPE_SUB,self.id)
   end
+  def key
+    parent_licence.key
+  end
 
   #Shortened calls
   def product_licences

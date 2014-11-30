@@ -1,10 +1,18 @@
+<% setup = Product.count > 0 %>
 <div class="navbar navbar-static-top">
   <div class="logo_container">
-    <a href="/" class="logo"><img src="http://yoyogames.com/assets/core/yoyogames.png" /></a>
+    <a href="http://yoyogames.com" class="logo"><img src="http://yoyogames.com/assets/core/yoyogames.png" /></a>
   </div>
   <div class="navbar-inner">
     <div class="container text-center" style="padding:0;">
       <!-- menu -->
+      <ul class="nav text-center" style="width:100%;">
+        <li style="display:inline-block;float:initial;"><a href="/" class="home">Home</a></li>
+        <% if setup %>
+          <li style="display:inline-block;float:initial;"><a href="/overview" class="home">Overview</a></li>
+        <% end %>
+      </ul>
+      <!--
       <ul class="nav pull-left">
         <li><a href="/" class="home">Home</a></li>
         <li><a href="/studio">GameMaker</a></li>
@@ -17,10 +25,10 @@
       </ul>
 
       <ul class="nav pull-right">
-        <!-- checkout stuff -->
         <li><a href="/studio/download">Download</a></li>
         <li><a href="/studio/buy" class="focused">Buy</a></li>
       </ul>
+      -->
     </div>
   </div>
 </div>

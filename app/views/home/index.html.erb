@@ -1,2 +1,25 @@
-<h1>Home Page</h1>
-<p>Eventually should consider putting some useful information here...</p>
+<% unless @setup %>
+  <h2>Setup</h2>
+  <p>
+    Run the following commands in the console (in listed order) from the project root folder:
+  </p>
+  <ol>
+    <li>Run <em>`bundle install`</em> to install required gems.</li>
+    <li>Run <em>`rake db:migrate`</em> to set up tables.</li>
+    <li>Run <em>`rake db:seed`</em> to set up dummy data.</li>
+    <li>Refresh this page.</li>
+  </ol>
+<% else %>
+  <h2>Welcome</h2>
+  <p>
+    Hi there!<br>
+    Thanks for taking the time to review my code. <br>
+    <br>
+    The API capabilities are not demonstrated in views. In fact, everything is demonstrated in spec.<br>
+    To see the code in action, please run rspec from the project root folder with the following command:<br>
+    <br>
+    <b><em>`rspec spec/`</em></b><br>
+    <br>
+    P.S. In the off chance stylesheets aren't working, it's probably because a new master has been pushed to the yoyogames.com server, overriding the current application.css URL I'm using to style this website.
+  </p>
+<% end %>
