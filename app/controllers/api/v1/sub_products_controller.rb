@@ -8,8 +8,12 @@ module Api
       end
 
       def show
-        @sub_product = SubProduct.find(params[:id])
-        render json: @sub_product
+        begin
+          @sub_product = SubProduct.find(params[:id])
+          render json: @sub_product
+        rescue
+          render json: {success: false, message: "Couldn\'t find a sub product with id: #{params[:id]}"}, status: 401
+        end
       end
     end
   end

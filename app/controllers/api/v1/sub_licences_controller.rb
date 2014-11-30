@@ -3,7 +3,7 @@ module Api
     class SubLicencesController < ApiController
       #Retreive all licences for an account
       def index 
-        @sub_licences = @account.sub_licences
+        @sub_licences = @current_account.sub_licences
         render json: @sub_licences
       end
     end
