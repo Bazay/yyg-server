@@ -1,0 +1,30 @@
+/* Fonts */
+$sansFontFamily: 'Open Sans', arial, sans-serif;
+$baseFontFamily: $sansFontFamily;
+$baseFontSize: 12px;
+$baseLineHeight: 12px;
+
+/* Colours */
+$brandPrimary: #457729;/*#73e716;*/
+$brandSuccess: #6da000;
+$brandDanger: #da4e49;
+$brandWarning: #f9a732;
+$linkColor: #507729;
+$linkColorHover: #2e5507;
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+html {
+  body {
+    font-family: $baseFontFamily;
+  }
+}
+
+.navbar-inverse .navbar-brand {
+  color: #73e716;
+}
+
+.table-condensed th {
+  font-size:1em;
+}

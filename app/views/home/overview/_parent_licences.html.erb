@@ -1,0 +1,40 @@
+<p>Parent licences are connected only to accounts. An Account can have one and only one ParentLicence.
+</p>
+<p>ParentLicence uses Single Table Inheritance (STI) to inherit from Licence. This allows greater separation and tidiness in the code. </p>
+<hr>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Account ID</th>
+      <th>Key</th>
+      <th>Licence State</th>
+      <th>Type</th>
+      <th>Deleted</th>
+      <th>Deleted At</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Expires At</th>
+      <th>Expired At</th>
+      <th>Revoked At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% parent_licences.each do |parent_licence| %>
+      <tr>
+        <td><%= parent_licence.id %></td>
+        <td><%= parent_licence.account.id %></td>
+        <td><%= parent_licence.key %></td>
+        <td><%= parent_licence.licence_state %></td>
+        <td><%= parent_licence.type %></td>
+        <td><%= parent_licence.deleted %></td>
+        <td><%= parent_licence.deleted_at %></td>
+        <td><%= parent_licence.created_at.strftime("%H:%M %d/%m/%Y") %></td>
+        <td><%= parent_licence.updated_at.strftime("%H:%M %d/%m/%Y") %></td>
+        <td><%= parent_licence.expires_at %></td>
+        <td><%= parent_licence.expired_at %></td>
+        <td><%= parent_licence.revoked_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

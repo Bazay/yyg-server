@@ -1,0 +1,90 @@
+<h1>Index</h1>
+<ol style="list-style-type:none;">
+  <li style="margin-left:-25px;">1. <a href="#models">Models</a></li>
+  <li style="list-style-type:none;">
+    <ol type="I">
+      <li><a href="#model_accounts">Accounts</a></li>
+      <li><a href="#model_parent_licences">Parent Licences</a></li>
+      <li><a href="#model_sub_licences">Sub Licences</a></li>
+      <li><a href="#model_products">Products</a></li>
+      <li><a href="#model_sub_products">Sub Products</a></li>
+    </ol>
+  </li>
+  <li style="margin-left:-25px;">2. <a href="#views">Views</a></li>
+  <li style="margin-left:-25px;">3. <a href="#controllers">Controllers</a></li>
+  <li style="list-style-type:none;">
+    <ol style="list-style-type:none;">
+      <li style="margin-left:-25px;">I. <a href="#controller_api">Api::V1</a></li>
+      <li style="list-style-type:none;">
+        <ol type="i">
+          <li><a href="#controller_api_base">api_controller.rb</a></li>
+          <li><a href="#controller_api_licences">licences_controller.rb</a></li>
+          <li><a href="#controller_api_sub_licences">sub_licences_controller.rb</a></li>
+          <li><a href="#controller_api_products">products_controller.rb</a></li>
+          <li><a href="#controller_api_sub_products">sub_products_controller.rb</a></li>
+        </ol>
+      </li>
+      <li style="margin-left:-25px;">II. <a href="#controller_root">Root</a></li>
+      <li style="list-style-type:none;">
+        <ol type="i">
+          <li><a href="#controller_root_home">home_controller.rb</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="models">Models</h2>
+<h3 id="model_accounts">Accounts</h3>
+<%= render 'home/overview/accounts', :accounts => @accounts %>
+<h3 id="model_parent_licences">Parent Licences</h3>
+<%= render 'home/overview/parent_licences', :parent_licences => @parent_licences %>
+<h3 id="model_sub_licences">Sub Licences</h3>
+<%= render 'home/overview/sub_licences', :sub_licences => @sub_licences %>
+<h3 id="model_products">Products</h3>
+<%= render 'home/overview/products', :products => @products %>
+<h3 id="model_sub_products">Sub Products</h3>
+<%= render 'home/overview/sub_products', :sub_products => @sub_products %>
+
+<h2 id="views">Views</h2>
+<p>Not a whole lot to see, just this page (overview) and the home page.</p>
+
+<h2 id="controllers">Controllers</h2>
+<h3 id="controller_api">Api::V1</h3>
+<p>The api controller is sub-divided into v1. The reason for this is as the separate api application evolves and changes, it may be tricky to stop breakage of the api with legacy applications. Therefore with every new major release of a new separate application, the version number can be incremented, to ensure legacy applications are not broken.</p>
+<h4 id="controller_api_base">api_controller.rb</h4>
+<p>This serves as a base controller for the api. This is where you would house methods, variables, etc required by all api controllers that inherit from it. I've used it purely to generate the @current_account variable (a common variable among all api controllers).</p>
+<h4 id="controller_api_licences">licences_controller.rb</h4>
+<p>
+  <b>index</b><br>
+  Allows the api to retrieve all licences that belong to an account (including the parent licence)
+</p>
+<h4 id="controller_api_sub_licences">sub_licences_controller.rb</h4>
+<p>
+  <b>index</b><br>
+  Allows the api to retrieve all sub_licences that belong to an account.
+</p>
+<h4 id="controller_api_products">products_controller.rb</h4>
+<p>
+  <b>index</b><br>
+  Allows the api to retrieve all products that belong to an account. <br>
+  <b>show</b><br>
+  Retrieve a particular product record.
+</p>
+<h4 id="controller_api_sub_products">sub_products_controller.rb</h4>
+<p>
+  <b>index</b><br>
+  Allows the api to retrieve all sub products that belong to an account. <br>
+  <b>show</b><br>
+  Retrieve a particular sub product record.
+</p>
+
+<h3 id="controller_root">Root</h3>
+<p>Pretty basic stuff, only controller in the root controllers directory if the home_controller which stores the actions for the home page and this page.</p>
+<h4 id="controller_root_home">home_controller.rb</h4>
+<p>
+  <b>index</b><br>
+  Connects to the home page. Provides as the applications root_path.<br>
+  <b>overview</b><br>
+  Connects to this page. Provides information on the application.
+</p>

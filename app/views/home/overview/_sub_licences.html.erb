@@ -1,0 +1,39 @@
+<p>A sub licence serves 2 purposes; they connect i) products, and ii) sub products to an account.</p>
+<p>SubLicence uses Single Table Inheritance (STI) to inherit from Licence. This allows greater separation and tidiness in the code. </p>
+<hr>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Account ID</th>
+      <th>Key</th>
+      <th>Licence State</th>
+      <th>Type</th>
+      <th>Deleted</th>
+      <th>Deleted At</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Expires At</th>
+      <th>Expired At</th>
+      <th>Revoked At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% sub_licences.each do |sub_licence| %>
+      <tr>
+        <td><%= sub_licence.id %></td>
+        <td><%= sub_licence.account.id %></td>
+        <td><%= sub_licence.key %></td>
+        <td><%= sub_licence.licence_state %></td>
+        <td><%= sub_licence.type %></td>
+        <td><%= sub_licence.deleted %></td>
+        <td><%= sub_licence.deleted_at %></td>
+        <td><%= sub_licence.created_at.strftime("%H:%M %d/%m/%Y") %></td>
+        <td><%= sub_licence.updated_at.strftime("%H:%M %d/%m/%Y") %></td>
+        <td><%= sub_licence.expires_at %></td>
+        <td><%= sub_licence.expired_at %></td>
+        <td><%= sub_licence.revoked_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

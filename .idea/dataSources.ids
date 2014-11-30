@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails yyg-server: development" uuid="847c8bf4-7d73-4a63-acfb-b1b866312d1e">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails yyg-server: test" uuid="69472f55-79cc-46cd-a1b5-fb8c67b6167c">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>
